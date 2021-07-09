@@ -182,7 +182,7 @@ model.to(device)
 
 criterion = nn.CrossEntropyLoss(weight=class_weights.to(device))
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-print(model)
+# print(model)
 
 # Calculating accuracy
 def multi_acc(y_pred, y_test):
@@ -296,21 +296,24 @@ def validate_model():
     plt.show()
 
 
-print(df.head())
+### Show info
+# print(df.head())
+# sns.countplot(x="barrier", data=df)
+# plt.show()
 
-sns.countplot(x="barrier", data=df)
-plt.show()
+#### Show class dist
+# show_class_dis()
 
-#### Train model
+# #### Train model
 # train()
 
-### Show accuracy
+# # ### Show accuracy
 # loss_acc()
 
-### Validate model
+# # ### Validate model
 # validate_model()
 
-###save model
+# # ###save model
 # torch.save(model.state_dict(), "barrier_model_multiclass.pth")
 # print("Saved PyTorch Model State to model.pth")
 
@@ -326,9 +329,12 @@ ans_s = scaler.transform([ans])
 # print(torch.FloatTensor(ans_s))
 
 model.eval()
-print(model(torch.FloatTensor(ans_s).to(device)))
+# print(model(torch.FloatTensor(ans_s).to(device)))
 res = torch.max(model(torch.FloatTensor(ans_s).to(device)), dim=1)
 
 res = res[1].cpu().numpy()[0]
 
 print("Barrier: " + str(idx2class[res]))
+
+
+print("Done")
